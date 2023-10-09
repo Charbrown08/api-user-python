@@ -60,7 +60,7 @@ class UpdateUserM(BaseModel):
 # POST
 
 
-@app.post("/users/users/test", tags=["Users"])
+@app.post("/users", tags=["Users"])
 def crear_usuario(user: UserM):
     db = Session()
     new_address = AddressModel(
@@ -69,13 +69,13 @@ def crear_usuario(user: UserM):
         city=user.address.city,
         state=user.address.state,
         zip=user.address.zip,
-        country=user.address.country,
+        country=user.address.country.lower(),
     )
     new_user = UserModel(
-        name=user.name,
-        lastname=user.lastname,
+        name=user.name.lower(),
+        lastname=user.lastname.lower(),
         age=user.age,
-        email=user.email,
+        email=user.email.lower(),
         password=user.password,
         address=new_address,
     )
@@ -86,13 +86,15 @@ def crear_usuario(user: UserM):
     return {"usuario": new_user, "direccion": new_address}
 
 
-# crea un enpoint que permita obtner todos los usuarios con sus direcciones
+# crea un enpoint que permita obtner todos los usuarios con sus direccione
 
 
 @app.get("/users", tags=["Users"])
 def obtener_usuarios():
     db = Session()
     users = db.query(UserModel).options(joinedload(UserModel.address)).all()
+    if not users:
+        raise HTTPException(status_code=404, detail="users not found")
     return users
 
 
@@ -103,6 +105,8 @@ def obtener_usuarios():
 def obtener_usuario(id: int):
     db = Session()
     user = db.query(UserModel).options(joinedload(UserModel.address)).get(id)
+    if not user:
+        raise HTTPException(status_code=404, detail="User not found")
     return user
 
 
@@ -124,7 +128,7 @@ def actualizar_usuario(id: int, user_data: UpdateUserM):
     if user_data.age is not None:
         existing_user.age = user_data.age
     if user_data.email is not None:
-        existing_user.email = user_data.email
+        existing_user.email = user_data.email.lower()
     if user_data.password is not None:
         existing_user.password = user_data.password
     if user_data.address is not None:
@@ -154,13 +158,17 @@ def eliminar_usuario(id: int):
 
 # crear un enpoint que permita obtner todos los usuarios  por el nombre de su pais en la direccion
 
-@app.get("/users/country/{pais}", tags=["Users"])
-def obtener_usuarios_por_pais(pais: str):
+
+@app.get("/users/country/{country}", tags=["Users"])
+def get_users_by_country(country: str):
+    country = country.lower()
     db = Session()
     users = (
         db.query(UserModel)
-        .filter(UserModel.address.has(country=pais))
+        .filter(UserModel.address.has(country=country))
         .options(joinedload(UserModel.address))
         .all()
     )
+    if not users:
+        raise HTTPException(status_code=404, detail="users not found with this country")
     return users
