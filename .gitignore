@@ -1,4 +1,30 @@
-__pycache__
-venv
-database.sqlite
-.vscode
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+
+# Caches and Logs
+*.log
+logs/
+*.sqlite
+
+# Virtual Environment
+venv/
+env/
+ENV/
+
+# Dependencies
+# https://pypi.org/project/pip-tools/
+pip-tools-out/
+
+# Local development configuration
+local_config.py
+
+# Editor / IDE specific files
+.idea/
+.vscode/
+*.swp
+*.swo
+*.swn
+
+# Database migrations
+alembic/versions/
