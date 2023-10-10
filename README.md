@@ -106,4 +106,29 @@ This process ensures that your project's dependencies are installed and run in a
 - The application handles errors, including cases where the user is not found.
 - Endpoints have been provided for all operations specified in the challenge.
 
-Remember to modify the database settings and other specific details of your implementation before running the application. Good luck with your challenge!
+
+
+### Running Tests with Pytest
+
+#### Installing Dependencies
+
+Before running tests, make sure to install the testing framework pytest. You can install it within your virtual environment using the following command:
+
+```bash
+pip install pytest
+```
+
+#### Running All Tests
+
+To execute all tests within your project, use the following command in your terminal or command prompt while your virtual environment is active:
+
+```bash
+pytest
+```
+
+This command will automatically discover and run all test functions in files matching the pattern `test_*.py` or `*_test.py` in your project directory and its subdirectories. Pytest will provide detailed output indicating which tests passed and which failed.
+
+Remember to write your test functions following the naming conventions recognized by pytest (i.e., starting with `test_`), and place them in files that match the specified patterns for automatic discovery.
+
+---
+
