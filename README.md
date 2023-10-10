@@ -1,93 +1,93 @@
 ### FastAPI User Administration REST API
 
-Esta es una aplicación básica de API REST creada con FastAPI para administrar usuarios y sus direcciones. La API proporciona endpoints para crear, obtener, actualizar y eliminar usuarios, así como para obtener usuarios por país en sus direcciones.
+This is a basic REST API application created with FastAPI to manage users and their addresses. The API provides endpoints for creating, retrieving, updating, and deleting users, as well as for retrieving users by country in their addresses.
 
-### Configuración y Ejecución
+### Setup and Execution
 
-1. **Configuración del Entorno Virtual**
+1. **Activate the Virtual Environment**
 
-   Antes de ejecutar la aplicación, asegúrate de activar tu entorno virtual (venv). Puedes hacerlo ejecutando el siguiente comando en tu terminal o símbolo del sistema:
+   Before running the application, make sure to activate your virtual environment (venv). You can do so by running the following command in your terminal or command prompt:
 
-   - En Windows:
+   - On Windows:
 
      ```
      venv\Scripts\activate
      ```
 
-   - En macOS y Linux:
+   - On macOS and Linux:
 
      ```
      source venv/bin/activate
      ```
 
-2. **Instalación de Dependencias**
+2. **Install Dependencies**
 
-   Asegúrate de tener Python y pip instalados. Luego, instala las dependencias ejecutando:
+   Ensure you have Python and pip installed. Then, install the dependencies by running:
 
    ```
    pip install fastapi uvicorn sqlalchemy
    ```
 
-3. **Base de Datos**
+3. **Database Setup**
 
-   Asegúrate de tener una base de datos configurada. Este código asume el uso de SQLAlchemy con una estructura de base de datos ya definida. Asegúrate de configurar las credenciales de la base de datos en `config/database.py`.
+   Ensure you have a configured database. This code assumes the use of SQLAlchemy with a predefined database structure. Make sure to configure the database credentials in `config/database.py`.
 
-4. **Ejecución de la Aplicación**
+4. **Run the Application**
 
-   Ejecuta la aplicación utilizando el siguiente comando:
+   Run the application using the following command:
 
    ```
    uvicorn main:app --reload
    ```
 
-   Esto iniciará el servidor FastAPI y la API estará disponible en `http://localhost:8000`.
+   This will start the FastAPI server, and the API will be accessible at `http://localhost:8000`.
 
-### Endpoints de la API
+### API Endpoints
 
 - **`POST /users`**
-  - Crear un nuevo usuario con dirección.
-  - Parámetros de entrada: nombre, apellido, edad, correo electrónico, contraseña y dirección.
+  - Create a new user with an address.
+  - Input parameters: name, lastname, age, email, password, and address.
   
 - **`GET /users`**
-  - Obtener todos los usuarios con sus direcciones.
+  - Retrieve all users with their addresses.
   
 - **`GET /users/{id}`**
-  - Obtener un usuario por su ID con su dirección.
+  - Retrieve a user by their ID with their address.
   
 - **`PUT /users/{id}`**
-  - Actualizar un usuario existente y su dirección.
-  - Parámetros de entrada: nombre, apellido, edad, correo electrónico, contraseña y dirección.
+  - Update an existing user and their address.
+  - Input parameters: name, lastname, age, email, password, and address.
   
 - **`DELETE /users/{id}`**
-  - Eliminar un usuario por su ID con su dirección.
+  - Delete a user by their ID with their address.
   
 - **`GET /users/country/{country}`**
-  - Obtener usuarios por el nombre de su país en la dirección.
+  - Retrieve users by the name of their country in the address.
 
-### Modelo de Datos
+### Data Models
 
-- **Usuario (`UserModel`)**: 
-  - ID (Generado automáticamente)
-  - Nombre
-  - Apellido
-  - Edad
-  - Correo Electrónico
-  - Contraseña
-  - Dirección (`AddressModel`)
+- **User (`UserModel`)**: 
+  - ID (Automatically generated)
+  - Name
+  - Lastname
+  - Age
+  - Email
+  - Password
+  - Address (`AddressModel`)
   
-- **Dirección (`AddressModel`)**: 
-  - ID (Generado automáticamente)
-  - Dirección 1
-  - Dirección 2
-  - Ciudad
-  - Estado
-  - Código Postal
-  - País
+- **Address (`AddressModel`)**: 
+  - ID (Automatically generated)
+  - Address Line 1
+  - Address Line 2
+  - City
+  - State
+  - ZIP
+  - Country
 
-### Notas Importantes
+### Important Notes
 
-- Las solicitudes y las respuestas se manejan en formato JSON.
-- La aplicación maneja errores, incluyendo casos de usuario no encontrado.
-- Se han proporcionado endpoints para todas las operaciones especificadas en el desafío.
+- Requests and responses are handled in JSON format.
+- The application handles errors, including cases where the user is not found.
+- Endpoints have been provided for all operations specified in the challenge.
 
-Recuerda modificar las configuraciones de la base de datos y otros detalles específicos de tu implementación antes de ejecutar la aplicación. ¡Buena suerte con tu desafío!# api-user-python
+Remember to modify the database settings and other specific details of your implementation before running the application. Good luck with your challenge!
