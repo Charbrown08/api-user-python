@@ -2,7 +2,23 @@
 
 This is a basic REST API application created with FastAPI to manage users and their addresses. The API provides endpoints for creating, retrieving, updating, and deleting users, as well as for retrieving users by country in their addresses.
 
-### Setup and Execution
+
+### Creating a Virtual Environment in Python
+
+Before running the application, it's recommended to create a virtual environment to ensure that the project dependencies are installed in an isolated environment, without affecting other Python applications on your system. A virtual environment is a directory that contains a self-contained Python installation, allowing libraries and tools specific to your project to be kept separate from other projects. This practice prevents conflicts and ensures a clean and controlled development environment.
+
+#### How to Create a Virtual Environment?
+
+To create a virtual environment in Python, use the following command in your terminal or command prompt:
+
+```bash
+python -m venv venv
+```
+
+This command utilizes the `venv` module in Python to create a virtual environment named `venv` in the current directory. You can change the name `venv` to any other name you prefer for your virtual environment.
+
+
+This process ensures that your project's dependencies are installed and run in an isolated environment, helping to avoid issues related to library versions and ensuring a consistent development experience for all users.
 
 1. **Activate the Virtual Environment**
 
